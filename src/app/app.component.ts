@@ -3,13 +3,19 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { Capacitor } from '@capacitor/core';
+import { AuthService } from './auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
 })
 export class AppComponent {
-  constructor(private platform: Platform) {
+  constructor(
+    private platform: Platform,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.initializeApp();
   }
 
@@ -24,5 +30,8 @@ export class AppComponent {
     });
   }
 
-  onLogout() {}
+  onLogout() {
+    this.authService.logout();
+    this.router.navigateByUrl('/auth');
+  }
 }
