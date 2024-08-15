@@ -60,6 +60,11 @@ Publish Directory: www
 
 Now the app can be accessed via: https://ranjen-ionic-course-app.netlify.app
 
+8. Changes to make it compatible with standard ionic project structure without the home page
+   replaced the main.ts , app-routing.module.ts, app.component.ts , app.module.ts
+   removed app.routes.ts
+   then install capacitor plugin for remove the error. Refer to no.9
+
 ---
 
 8. If want to generate new component can use
@@ -67,6 +72,10 @@ Now the app can be accessed via: https://ranjen-ionic-course-app.netlify.app
    > ng g c recipes
    > //OR
    > ionic generate
+
+For this project we create auth component using:
+
+> ionic generate page auth
 
 9. Since using Capacitor plugin , Don't need the @ionic-native/splash-screen and @ionic-native/status-bar plugins anymore
 
