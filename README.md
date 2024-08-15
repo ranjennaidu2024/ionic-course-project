@@ -172,3 +172,11 @@ For ios after run ionic capacitor run ios -l
 
 - open Safari > Develop > Simulator of the emulator we selected in xcode > ip address
   You can see the console, network , elements etc like in Chrome
+
+---
+
+17. For the ion-icons you can see not being generated , so can use cdn:
+      <!-- <ion-icon name="search"></ion-icon> -->
+    <ion-icon
+    src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/svg/search.svg"
+    > </ion-icon>
