@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { Place } from './place.model';
 
 @Injectable({
@@ -34,4 +35,8 @@ export class PlacesService {
   }
 
   constructor() {}
+
+  getPlace(id: string): Place | undefined {
+    return this._places.find((p) => p.id === id);
+  }
 }
