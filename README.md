@@ -71,11 +71,14 @@ Now the app can be accessed via: https://ranjen-ionic-course-app.netlify.app
 
    > ng g c recipes
    > //OR
-   > ionic generate
+   > ionic generate component
 
-For this project we create auth component using:
+Actually we should create auth component using:
 
-> ionic generate page auth
+> ionic generate component auth
+
+but we will not use this command for now as it will create auth.component,
+for now we will do manual creation and update the app-routing.module.ts
 
 9. Since using Capacitor plugin , Don't need the @ionic-native/splash-screen and @ionic-native/status-bar plugins anymore
 
