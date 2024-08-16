@@ -6,12 +6,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { PlaceDetailPage } from './place-detail.page';
+import { CreateBookingComponent } from '../../../bookings/create-booking/create-booking.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: PlaceDetailPage
-  }
+    component: PlaceDetailPage,
+  },
 ];
 
 @NgModule({
@@ -19,8 +20,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
-  declarations: [PlaceDetailPage]
+  declarations: [PlaceDetailPage, CreateBookingComponent],
 })
 export class PlaceDetailPageModule {}
