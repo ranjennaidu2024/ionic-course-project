@@ -1,0 +1,17 @@
+<cdk-virtual-scroll-viewport itemSize="70" minBufferPx="200" maxBufferPx="400">
+  <ion-list>
+    <ion-item
+      *cdkVirtualFor="let p of nonFeaturedPlaces"
+      [routerLink]="['/places/tabs/discover', p.id]"
+      detail
+    >
+      <ion-thumbnail slot="start">
+        <ion-img [src]="p.imageUrl"></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ p.title }}</h2>
+        <p>{{ p.description }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</cdk-virtual-scroll-viewport>

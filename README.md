@@ -177,6 +177,18 @@ For ios after run ionic capacitor run ios -l
 
 17. For the ion-icons you can see not being generated , so can use cdn:
       <!-- <ion-icon name="search"></ion-icon> -->
+
     <ion-icon
     src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/svg/search.svg"
+
     > </ion-icon>
+
+18. Looking for ion-virtual-scroll?
+    ion-virtual-scroll was deprecated in v6.0.0 and removed in v7.0.0. We recommend using the @angular/cdk package detailed below.
+    https://ionicframework.com/docs/angular/virtual-scroll
+
+- To setup the CDK Scroller, first install @angular/cdk:
+  npm add @angular/cdk
+
+- then need to import ScrollingModule into the module
+  For example can refer to discover.module.ts and how it is being used - refer to app-discover-items-scrollwindow in discover.page.html

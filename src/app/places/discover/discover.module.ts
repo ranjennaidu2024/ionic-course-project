@@ -4,14 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { DiscoverPage } from './discover.page';
+import { DiscoverItemsScrollwindowComponent } from './discover-items-scrollwindow/discover-items-scrollwindow.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DiscoverPage
-  }
+    component: DiscoverPage,
+  },
 ];
 
 @NgModule({
@@ -19,8 +21,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    ScrollingModule,
+    RouterModule.forChild(routes),
   ],
-  declarations: [DiscoverPage]
+  declarations: [DiscoverPage, DiscoverItemsScrollwindowComponent],
 })
 export class DiscoverPageModule {}
