@@ -210,3 +210,9 @@ Let say we put in the html of specific component , it will override the global c
 - Ti assigne to component css use the scss of the component
   You can use global css variable in the component css as well as it is general for the root
   For example can refer to h1 border and color in the \places\offers\offer-item\offer-item.component.scss
+
+20. For the form styling of invalid value can refer to following css value in src/global.scss for auth/authpage.html
+
+.ion-invalid.ion-touched ion-input {
+color: var(--ion-color-danger);
+}

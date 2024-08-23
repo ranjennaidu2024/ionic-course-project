@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from './auth.service';
+import { NgForm } from '@angular/forms';
 import { LoadingController } from '@ionic/angular';
+
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -9,21 +11,14 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./auth.page.scss'],
 })
 export class AuthPage {
+  isLoading = false;
+  isLogin = true;
+
   constructor(
     private authService: AuthService,
     private router: Router,
     private loadingCtrl: LoadingController
   ) {}
-  isLoading = false;
-
-  // onLogin() {
-  //   this.authService.login();
-  //   setTimeout(() => {
-  //     this.isLoading = false;
-  //     //loadingEl.dismiss();
-  //     this.router.navigateByUrl('/places/tabs/discover');
-  //   }, 1500);
-  // }
 
   onLogin() {
     this.isLoading = true;
@@ -38,5 +33,24 @@ export class AuthPage {
           this.router.navigateByUrl('/places/tabs/discover');
         }, 1500);
       });
+  }
+
+  onSwitchAuthMode() {
+    this.isLogin = !this.isLogin;
+  }
+
+  onSubmit(form: NgForm) {
+    if (!form.valid) {
+      return;
+    }
+    const email = form.value.email;
+    const password = form.value.password;
+    console.log(email, password);
+
+    if (this.isLogin) {
+      // Send a request to login servers
+    } else {
+      // Send a request to signup servers
+    }
   }
 }
