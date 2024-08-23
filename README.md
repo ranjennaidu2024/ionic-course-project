@@ -192,3 +192,17 @@ For ios after run ionic capacitor run ios -l
 
 - then need to import ScrollingModule into the module
   For example can refer to discover.module.ts and how it is being used - refer to app-discover-items-scrollwindow in discover.page.html
+
+19. For css syling:
+
+- To assign any Ionic CSS Variables use theme/variable.css
+  You can generate using https://ionicframework.com/docs/theming/color-generator and copy paste at the css
+  For advance application colors for toolbar etc can refer to :
+  https://ionicframework.com/docs/theming/themes#application-colors
+
+  Let say we put in the html of specific component , it will override the global css. Use when need different look for specific page.
+
+- To assign to concrete css property use global.scss
+- Ti assigne to component css use the scss of the component
+  You can use global css variable in the component css as well as it is general for the root
+  For example can refer to h1 border and color in the \places\offers\offer-item\offer-item.component.scss:
