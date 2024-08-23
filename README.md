@@ -216,3 +216,24 @@ Let say we put in the html of specific component , it will override the global c
 .ion-invalid.ion-touched ion-input {
 color: var(--ion-color-danger);
 }
+
+21. For latest version of angular for the form we need to change also make sure the label and input in one tag
+
+Before:
+<ion-label position="floating">Title</ion-label>
+<ion-input
+type="text"
+autocomplete
+autocorrect
+formControlName="title">
+</ion-input>
+
+After:
+<ion-input
+label="Title"
+label-placement="floating"
+type="text"
+autocomplete
+autocorrect
+formControlName="title">
+</ion-input>
