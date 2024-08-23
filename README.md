@@ -200,9 +200,13 @@ For ios after run ionic capacitor run ios -l
   For advance application colors for toolbar etc can refer to :
   https://ionicframework.com/docs/theming/themes#application-colors
 
-  Let say we put in the html of specific component , it will override the global css. Use when need different look for specific page.
+* In the document for example ion-button , if let say we want to set same color for all this button component , we can set it at theme/variable.css by referring to the CSS Custom Properties documentation of that component:
+  https://ionicframework.com/docs/api/button#css-custom-properties-1
+  For example can refer to the --box-shadow in the theme/variable.css
+
+Let say we put in the html of specific component , it will override the global css. Use when need different look for specific page.
 
 - To assign to concrete css property use global.scss
 - Ti assigne to component css use the scss of the component
   You can use global css variable in the component css as well as it is general for the root
-  For example can refer to h1 border and color in the \places\offers\offer-item\offer-item.component.scss:
+  For example can refer to h1 border and color in the \places\offers\offer-item\offer-item.component.scss
