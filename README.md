@@ -237,3 +237,7 @@ autocomplete
 autocorrect
 formControlName="title">
 </ion-input>
+
+22. For forms
+    Template drive form - refer to auth page
+    Reactive form - refer to new offer page
