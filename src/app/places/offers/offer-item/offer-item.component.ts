@@ -11,8 +11,4 @@ export class OfferItemComponent {
   @Input() offer!: Place;
 
   constructor() {}
-
-  getDummyDate() {
-    return new Date();
-  }
 }
