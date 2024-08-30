@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   NavController,
@@ -9,14 +9,16 @@ import {
 import { PlacesService } from '../../places.service';
 import { Place } from '../../place.model';
 import { CreateBookingComponent } from '../../../bookings/create-booking/create-booking.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-place-detail',
   templateUrl: './place-detail.page.html',
   styleUrls: ['./place-detail.page.scss'],
 })
-export class PlaceDetailPage implements OnInit {
-  place: Place | undefined; // Allow place to be undefined initially
+export class PlaceDetailPage implements OnInit, OnDestroy {
+  place!: Place;
+  private placeSub!: Subscription;
 
   constructor(
     private navCtrl: NavController,
@@ -37,7 +39,11 @@ export class PlaceDetailPage implements OnInit {
       }
 
       // Ensure getPlace accepts only a string and handle undefined response
-      this.place = this.placesService.getPlace(placeId);
+      this.placeSub = this.placesService
+        .getPlace(placeId)
+        .subscribe((place) => {
+          this.place = place;
+        });
 
       if (!this.place) {
         // Handle the case when no place is found
@@ -91,5 +97,11 @@ export class PlaceDetailPage implements OnInit {
           console.log('BOOKED!');
         }
       });
+  }
+
+  ngOnDestroy() {
+    if (this.placeSub) {
+      this.placeSub.unsubscribe();
+    }
   }
 }

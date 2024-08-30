@@ -3,12 +3,13 @@ import { take, map } from 'rxjs/operators';
 
 import { Place } from './place.model';
 import { AuthService } from '../auth/auth.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlacesService {
-  private _places: Place[] = [
+  private _places = new BehaviorSubject<Place[]>([
     new Place(
       'p1',
       'Manhattan Mansion',
@@ -39,16 +40,35 @@ export class PlacesService {
       new Date('2019-12-31'),
       'abc'
     ),
-  ];
+  ]);
 
   get places() {
-    return [...this._places];
+    return this._places.asObservable();
   }
 
   constructor(private authService: AuthService) {}
 
-  getPlace(id: string): Place | undefined {
-    return this._places.find((p) => p.id === id);
+  getPlace(id: string) {
+    return this.places.pipe(
+      take(1),
+      map((places) => {
+        const place = places.find((p) => p.id === id);
+        if (!place) {
+          throw new Error('Place not found');
+        }
+        // Ensure the place returned has all properties defined
+        return new Place(
+          place.id,
+          place.title,
+          place.description,
+          place.imageUrl,
+          place.price,
+          place.availableFrom,
+          place.availableTo,
+          place.userId
+        );
+      })
+    );
   }
 
   addPlace(
@@ -68,6 +88,8 @@ export class PlacesService {
       dateTo,
       this.authService.userId
     );
-    this._places.push(newPlace);
+    this.places.pipe(take(1)).subscribe((places) => {
+      this._places.next(places.concat(newPlace));
+    });
   }
 }

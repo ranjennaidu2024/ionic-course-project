@@ -7,12 +7,15 @@ import { PlacesService } from '../../places.service';
   templateUrl: './discover-items-scrollwindow.component.html',
   styleUrls: ['./discover-items-scrollwindow.component.scss'],
 })
-export class DiscoverItemsScrollwindowComponent {
-  nonFeaturedPlaces: Place[];
+export class DiscoverItemsScrollwindowComponent implements OnInit {
+  nonFeaturedPlaces!: Place[];
 
-  constructor(private placesService: PlacesService) {
-    const places = this.placesService.places;
-    this.nonFeaturedPlaces = places.filter((p) => p.id !== 'p1');
-    console.log(this.nonFeaturedPlaces);
+  constructor(private placesService: PlacesService) {}
+
+  ngOnInit() {
+    this.placesService.places.subscribe((places) => {
+      this.nonFeaturedPlaces = places.filter((p) => p.id !== 'p1');
+      console.log(this.nonFeaturedPlaces);
+    });
   }
 }
