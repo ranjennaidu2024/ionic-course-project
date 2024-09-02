@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs';
 export class EditOfferPage implements OnInit, OnDestroy {
   place!: Place;
   form!: FormGroup;
+  isLoading = false;
   private placeSub!: Subscription;
 
   constructor(
@@ -32,11 +33,7 @@ export class EditOfferPage implements OnInit, OnDestroy {
         this.navCtrl.navigateBack('/places/tabs/offers');
         return;
       }
-      const foundPlace = this.placesService.getPlace(placeId);
-      if (!foundPlace) {
-        this.navCtrl.navigateBack('/places/tabs/offers'); // Or show an error message.
-        return;
-      }
+      this.isLoading = true;
       this.placeSub = this.placesService
         .getPlace(placeId)
         .subscribe((place) => {
@@ -51,6 +48,7 @@ export class EditOfferPage implements OnInit, OnDestroy {
               validators: [Validators.required, Validators.maxLength(180)],
             }),
           });
+          this.isLoading = false;
         });
     });
   }

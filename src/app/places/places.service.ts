@@ -62,26 +62,24 @@ export class PlacesService {
   }
 
   getPlace(id: string) {
-    return this.places.pipe(
-      take(1),
-      map((places) => {
-        const place = places.find((p) => p.id === id);
-        if (!place) {
-          throw new Error('Place not found');
-        }
-        // Ensure the place returned has all properties defined
-        return new Place(
-          place.id,
-          place.title,
-          place.description,
-          place.imageUrl,
-          place.price,
-          place.availableFrom,
-          place.availableTo,
-          place.userId
-        );
-      })
-    );
+    return this.http
+      .get<PlaceData>(
+        `https://ionic-course-project-a97d6-default-rtdb.asia-southeast1.firebasedatabase.app/offered-places/${id}.json`
+      )
+      .pipe(
+        map((placeData) => {
+          return new Place(
+            id,
+            placeData.title,
+            placeData.description,
+            placeData.imageUrl,
+            placeData.price,
+            new Date(placeData.availableFrom),
+            new Date(placeData.availableTo),
+            placeData.userId
+          );
+        })
+      );
   }
 
   addPlace(
