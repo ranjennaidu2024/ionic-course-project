@@ -251,3 +251,14 @@ formControlName="title">
 
 - To test change in the auth.service.ts change to different userId so able to see the book button now
   private userId = 'xyz';
+
+---
+
+24. FireBase setup for backend
+
+- Search for FireBase in google and create account using your google account
+- Create new FireBase project : Eg:ionic-course-project
+- Create new database via FireBase Console > Realtime Database > Start in test mode now for non-production
+- Now we can see the database created via url https://ionic-course-project-a97d6-default-rtdb.asia-southeast1.firebasedatabase.app/
+  This we will use to send request later to store data in database via REST API.
+- Can refer to places.service.ts for example
