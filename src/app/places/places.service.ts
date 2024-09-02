@@ -124,12 +124,12 @@ export class PlacesService {
   }
 
   updatePlace(placeId: string, title: string, description: string) {
+    let updatedPlaces: Place[];
     return this.places.pipe(
       take(1),
-      delay(1000),
-      tap((places) => {
+      switchMap((places) => {
         const updatedPlaceIndex = places.findIndex((pl) => pl.id === placeId);
-        const updatedPlaces = [...places];
+        updatedPlaces = [...places];
         const oldPlace = updatedPlaces[updatedPlaceIndex];
         updatedPlaces[updatedPlaceIndex] = new Place(
           oldPlace.id,
@@ -141,6 +141,12 @@ export class PlacesService {
           oldPlace.availableTo,
           oldPlace.userId
         );
+        return this.http.put(
+          `https://ionic-course-project-a97d6-default-rtdb.asia-southeast1.firebasedatabase.app/offered-places/${placeId}.json`,
+          { ...updatedPlaces[updatedPlaceIndex], id: null }
+        );
+      }),
+      tap(() => {
         this._places.next(updatedPlaces);
       })
     );
