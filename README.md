@@ -241,3 +241,13 @@ formControlName="title">
 22. For forms
     Template drive form - refer to auth page
     Reactive form - refer to new offer page
+
+---
+
+23. To test bookable places based on userId
+
+- If auth userId and place user Id same it wont show the book button
+  private userId = 'abc';
+
+- To test change in the auth.service.ts change to different userId so able to see the book button now
+  private userId = 'xyz';

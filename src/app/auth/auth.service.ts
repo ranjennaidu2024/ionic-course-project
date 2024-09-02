@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   private _userIsAuthenticated = true;
-  private _userId = 'abc';
+  private _userId = 'xyz';
 
   //to disable auth temporarily for testing
   //private _userIsAuthenticated = true;
