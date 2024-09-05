@@ -299,4 +299,13 @@ Now able to look into booking and search by userId stored there.
 
 For now we use Javascript SDK , but Optional for google maps Angular can also use : https://angular-maps.com/
 
-We have added restriction via ipaddress and url for now in the google credential console settings of the api key. Can change this later during testing if the google maps not working. Make sure not leave it blank else all other websites can access it.
+IMPORTANT: We have added restriction via ipaddress and url for now in the google credential console settings of the api key. Can change this later during testing if the google maps not working. Make sure not leave it blank else all other websites can access it.
+
+For Geocoding API used in the getAddress of location-picker.component.ts currently giving error : API keys with referer restrictions cannot be used with this API.
+So disable the restriction from google console temporarily , then add the web restriction again after testing.
+http://localhost:8100/places/tabs/offers/new
+https://ranjen-ionic-course-app.netlify.app/*
+
+27. To send location and get the place name from google maps can use
+    Google GeoCoding API - https://developers.google.com/maps/documentation/geocoding/start
+    -copy the sample request url there and paste it with your api key
