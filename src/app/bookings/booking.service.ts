@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { take, tap, delay, switchMap, map } from 'rxjs/operators';
+import { take, tap, switchMap, map } from 'rxjs/operators';
 
 import { Booking } from './booking.model';
 import { AuthService } from '../auth/auth.service';
@@ -70,13 +70,19 @@ export class BookingService {
   }
 
   cancelBooking(bookingId: string) {
-    return this.bookings.pipe(
-      take(1),
-      delay(1000),
-      tap((bookings) => {
-        this._bookings.next(bookings.filter((b) => b.id !== bookingId));
-      })
-    );
+    return this.http
+      .delete(
+        `https://ionic-course-project-a97d6-default-rtdb.asia-southeast1.firebasedatabase.app/bookings/${bookingId}.json`
+      )
+      .pipe(
+        switchMap(() => {
+          return this.bookings;
+        }),
+        take(1),
+        tap((bookings) => {
+          this._bookings.next(bookings.filter((b) => b.id !== bookingId));
+        })
+      );
   }
 
   fetchBookings() {
