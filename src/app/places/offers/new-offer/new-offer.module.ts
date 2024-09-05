@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { NewOfferPage } from './new-offer.page';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     IonicModule,
     RouterModule.forChild(routes),
+    SharedModule,
   ],
   declarations: [NewOfferPage],
 })
