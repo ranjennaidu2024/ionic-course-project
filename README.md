@@ -298,3 +298,5 @@ Now able to look into booking and search by userId stored there.
   > ng g c shared/map-modal
 
 For now we use Javascript SDK , but Optional for google maps Angular can also use : https://angular-maps.com/
+
+We have added restriction via ipaddress and url for now in the google credential console settings of the api key. Can change this later during testing if the google maps not working. Make sure not leave it blank else all other websites can access it.
