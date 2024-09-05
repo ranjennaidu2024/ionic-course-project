@@ -291,10 +291,7 @@ Now able to look into booking and search by userId stored there.
 
 - Create API Key from that page after filling credit card for billing details , select maps and places
 - Choose the project
-- Use the API Key generated there into the Javascript SDK that will import into our project, so copy the code on the page and just insert your key there, Add the code below in new component map-modal.component.ts , so that dynamically load it only when needed
-
-      script.src =
-        'https://maps.googleapis.com/maps/api/js?key=AIzaSyC3Ts5Zli57XHZzES4iDmLfJ2MBHtZKHH4';
+- Use the API Key generated there into the Javascript SDK that will import into our project, so copy the code on the page and just insert your key there, Add the code in new component map-modal.component.ts , so that dynamically load it only when needed
 
 - For this generate new component
   > ng g c shared/pickers/location-picker
