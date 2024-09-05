@@ -262,3 +262,22 @@ formControlName="title">
 - Now we can see the database created via url https://ionic-course-project-a97d6-default-rtdb.asia-southeast1.firebasedatabase.app/
   This we will use to send request later to store data in database via REST API.
 - Can refer to places.service.ts for example
+
+25. For fetchBookings in booking service , we need to add adjustment in firebase site
+    Database > Rules
+
+need to add the index settings in bookings node as below:
+{
+"rules": {
+".read": "now < 1727798400000", // 2024-10-2
+".write": "now < 1727798400000", // 2024-10-2
+"bookings": {
+".indexOn": ["userId"]
+}
+}
+}
+
+booking is node you created , whatever you entered in the url eg:booking.json
+put column in the array you want to make searchable , eg: userId
+Publish
+Now able to look into booking and search by userId stored there.
