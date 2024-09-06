@@ -50,6 +50,14 @@ material icon theme
 
 > ionic serve
 
+Update
+
+If any changes in the env variables make sure run npm run prebuild first
+
+- Initial setup: You need to run npm run prebuild when you first set up your project or if your .env file (containing environment variables like GOOGLE_MAPS_API_KEY) is added or modified.
+- Whenever environment variables change: If you update any values in the .env file, you'll need to run npm run prebuild again to update the environment.ts and environment.prod.ts files.
+- Before deploying to production: When you're preparing the app for production (e.g., on Netlify), the prebuild step ensures the environment variables are correctly injected into the build files.
+
 6. now you should be access the app via http://localhost:8100
 
 7. Deployment steps:
@@ -351,3 +359,30 @@ This will ensure the Google Maps API key is provided when the application builds
 This approach keeps sensitive information secure while ensuring it is available during deployment.
 
 ---
+
+ENVIRONMENT VARIABLES IMPLEMENTED
+
+1. First, install the dotenv package to manage environment variables.
+
+   > npm install dotenv
+
+   Then, To run .ts files without compiling them into .js files, you can use ts-node:
+
+   > npm install ts-node
+
+2. Create a .env file in the root of your project. You will store your environment variables here.
+   GOOGLE_MAPS_API_KEY=your-google-maps-api-key-here
+
+3. Update environment.ts to load environment variables
+
+4. In your package.json, add a script to replace environment variables from .env into your environment.ts:
+   "prebuild": "ts-node ./scripts/set-env.ts",
+
+5. Create a set-env.js script
+   Create a scripts folder in your project, and add a set-env.js file that will replace the environment variables:
+
+6. Add .env to .gitignore to prevent the .env file from being pushed to Git, add it to .gitignore:
+
+7. Now, in your application, you can use the googleMapsAPIKey from the environment.ts
+
+8. Run [npm run prebuild] first time and when there is changes in the env variables, the next time just can run ionic serve to start the app.

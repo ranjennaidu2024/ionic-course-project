@@ -1,4 +1,5 @@
+
 export const environment = {
   production: true,
-  googleMapsAPIKey: 'AIzaSyBUS-FEgKD4NF-JwmRImUWi5AaU_YaiC1c',
+  googleMapsAPIKey: 'AIzaSyCMifGeJ6S46GoRy6vB9fqqHbtlMdkgzZI',
 };
