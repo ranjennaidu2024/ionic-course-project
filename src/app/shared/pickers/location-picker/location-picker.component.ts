@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MapModalComponent } from '../../map-modal/map-modal.component';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
+import { of } from 'rxjs';
+import { PlaceLocation } from 'src/app/places/location.model';
 
 @Component({
   selector: 'app-location-picker',
@@ -11,6 +13,9 @@ import { environment } from '../../../../environments/environment';
   styleUrls: ['./location-picker.component.scss'],
 })
 export class LocationPickerComponent {
+  selectedLocationImage!: string;
+  isLoading = false;
+
   constructor(private modalCtrl: ModalController, private http: HttpClient) {}
 
   onPickLocation() {
@@ -19,14 +24,36 @@ export class LocationPickerComponent {
         if (!modalData.data) {
           return;
         }
-        this.getAddress(modalData.data.lat, modalData.data.lng).subscribe(
-          (address: any) => {
-            console.log(address);
-          }
-        );
+        const pickedLocation: PlaceLocation = {
+          lat: modalData.data.lat,
+          lng: modalData.data.lng,
+          address: '',
+          staticMapImageUrl: '',
+        };
+        this.isLoading = true;
+        this.getAddress(modalData.data.lat, modalData.data.lng)
+          .pipe(
+            switchMap((address) => {
+              pickedLocation.address = address;
+              return of(
+                this.getMapImage(pickedLocation.lat, pickedLocation.lng, 14)
+              );
+            })
+          )
+          .subscribe((staticMapImageUrl) => {
+            pickedLocation.staticMapImageUrl = staticMapImageUrl;
+            this.selectedLocationImage = staticMapImageUrl;
+            this.isLoading = false;
+          });
       });
       modalEl.present();
     });
+  }
+
+  private getMapImage(lat: number, lng: number, zoom: number) {
+    return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=${zoom}&size=500x300&maptype=roadmap
+    &markers=color:red%7Clabel:Place%7C${lat},${lng}
+    &key=${environment.googleMapsAPIKey}`;
   }
 
   private getAddress(lat: number, lng: number) {
