@@ -309,3 +309,45 @@ https://ranjen-ionic-course-app.netlify.app/*
 27. To send location and get the place name from google maps can use
     Google GeoCoding API - https://developers.google.com/maps/documentation/geocoding/start
     -copy the sample request url there and paste it with your api key
+
+28. Google Static API - https://developers.google.com/maps/documentation/maps-static/overview
+
+---
+
+We will use Enviroment Variable in Netlify to handle sensitive information like Google Maps API Key
+
+1. Update your environment.ts file:
+
+export const environment = {
+production: false,
+googleMapsAPIKey: process.env['NG_APP_GOOGLE_MAPS_API_KEY'],
+};
+
+2.  Add Environment Variable in Netlify:
+
+-Go to your Netlify dashboard.
+-Choose the site you want to configure.
+-Click on Site settings.
+-Scroll down to Build & deploy.
+-Click Environment and then Edit variables.
+-Add a new environment variable:
+Key: NG_APP_GOOGLE_MAPS_API_KEY
+Value: [put the value here]
+This will ensure the Google Maps API key is provided when the application builds on Netlify without exposing it in your source code.
+
+3. Modify angular.json (Optional)
+   If you're using multiple environments like development and production, ensure that angular.json is correctly set up to replace environment.ts with environment.prod.ts during production builds.
+
+"fileReplacements": [
+{
+"replace": "src/environments/environment.ts",
+"with": "src/environments/environment.prod.ts"
+}
+]
+
+4. Test Deployment on Netlify
+   Now when you deploy your Angular app to Netlify, the environment variables will be injected into the build process, and the API key will not be included in your source code.
+
+This approach keeps sensitive information secure while ensuring it is available during deployment.
+
+---
