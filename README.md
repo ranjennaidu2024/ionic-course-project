@@ -1,3 +1,8 @@
+IMPORTANT: To test locally currently we store the google api key in the .env
+This will overwrite the enviroment.ts and enviroment.prod.ts when each time we execute the npm run prebuild before the ionic serve command in order to make the maps work.
+We should not push the code for now temporarily till find a fix or alternative for this later. If accidently pushed need to regenerate new key in the Google Credential Console and update in both env and netlify env variable.
+For Netlify we need to configure in the Netlify Console enviroment variable of that project as well.
+
 ionic-course-project
 
 This is a course project app using Ionic + Angular.
@@ -48,6 +53,7 @@ material icon theme
 
 5)open visual studio in terminal and to run in local use this command
 
+> npm run prebuild (only one time to copy your local apikey from .env to environment.ts and environment.prod.ts, after that not required and make sure not push this code as only for testing purpose)
 > ionic serve
 
 Update
