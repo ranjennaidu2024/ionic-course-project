@@ -382,6 +382,7 @@ ENVIRONMENT VARIABLES IMPLEMENTED
    Create a scripts folder in your project, and add a set-env.js file that will replace the environment variables:
 
 6. Add .env to .gitignore to prevent the .env file from being pushed to Git, add it to .gitignore:
+   So for local testing can add the env variables into this .env file , for the deployment in Netlify app can create in the Netlify console with the same name.
 
 7. Now, in your application, you can use the googleMapsAPIKey from the environment.ts
 
