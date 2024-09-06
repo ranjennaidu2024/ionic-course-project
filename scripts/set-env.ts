@@ -4,7 +4,6 @@ require('dotenv').config();
 
 // Correctly access the environment variable using bracket notation
 const googleMapsAPIKey = process.env['GOOGLE_MAPS_API_KEY'] || '';
-//const googleMapsAPIKey = 'AIzaSyCMifGeJ6S46GoRy6vB9fqqHbtlMdkgzZI';
 
 // Log to check if the script is being executed
 console.log('set-env.ts is being executed');
@@ -12,7 +11,7 @@ console.log(`Google Maps API Key from .env: ${googleMapsAPIKey}`);
 
 if (!googleMapsAPIKey) {
   console.error('Error: GOOGLE_MAPS_API_KEY is not set in the .env file.');
-  process.exit(1); // Exit the process with an error code
+  process.exit(1);
 }
 
 // Paths to environment files
